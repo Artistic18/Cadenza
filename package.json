@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Artistic18/Cadenza#readme",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "opusscript": "0.0.7",
+    "simple-youtube-api": "^5.2.1",
+    "ytdl-core": "^3.3.0"
   }
 }
