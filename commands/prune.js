@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'delete message',
+    name: 'delete',
     description: 'Delete messages in bulk',
-    execute(message, args){
+    async execute(message, args){
         const amount = parseInt(args[0]) +1 ;
         if(isNaN(amount)){
             return message.reply('Enter a valid number.');
@@ -14,5 +14,6 @@ module.exports = {
             console.error(err);
             message.channel.send('There was an error trying to delete messages');
         });
+        message.channel.send(`Deleted ${amount-1} messages.`);
     },
 };
