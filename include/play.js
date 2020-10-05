@@ -6,11 +6,17 @@ module.exports = {
         const queue = message.client.queue.get(message.guild.id);
 
         if(!song){
-            queue.channel.leave();
-            message.channel.queue.delete(message.guild.id);
-            return queue.textChannel.send("Music Queue Ended");
+            setTimeout(function(){
+                if(!queue.connection.dispatcher && message.guild.me.voice.channel){
+                    queue.channel.leave();
+                    queue.textChannel.send(`**Cadenza** left successfully`).catch(console.error);
+                }
+                else return;
+            },120000);
+            message.client.queue.delete(message.guild.id);
+            return queue.textChannel.send(`**Music Queue Ended**`);
         }
-
+        queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
         const dispatcher = queue.connection
          .play(ytdlDiscord(song.url))
          .on("finish", () => {

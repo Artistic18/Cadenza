@@ -20,6 +20,9 @@ for(const file of commandFIles){
 client.once('ready', () => {
     console.log('Cadenza is Online');
 });
+client.once('disconect', () => {
+    console.log('Disconnect!');
+});
 
 client.on('message', async (msg) => {
     if(!msg.content.startsWith(prefix) || msg.author.bot){
