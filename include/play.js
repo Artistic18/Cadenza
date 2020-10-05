@@ -18,7 +18,7 @@ module.exports = {
         }
         queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
         const dispatcher = queue.connection
-         .play(ytdlDiscord(song.url), {bitrate: 64000})
+         .play(ytdlDiscord(song.url), {bitrate: 32000})
          .on("finish", () => {
              queue.songs.shift();
              module.exports.play(queue.songs[0], message);
