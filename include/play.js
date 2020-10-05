@@ -1,5 +1,5 @@
 const { Collector } = require("discord.js");
-const ytdlDiscord = require("ytdl-core");
+const ytdlDiscord = require("ytdl-core-discord");
 const play = require("../commands/play");
 module.exports = {
     async play(song, message){
@@ -16,9 +16,11 @@ module.exports = {
             message.client.queue.delete(message.guild.id);
             return queue.textChannel.send(`**Music Queue Ended**`);
         }
+        let stream = await ytdlDiscord(song.url,{filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25});
+        let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
         queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
         const dispatcher = queue.connection
-         .play(ytdlDiscord(song.url))
+         .play(stream, {type: streamType, highWaterMark: 1})
          .on("finish", () => {
              queue.songs.shift();
              module.exports.play(queue.songs[0], message);
