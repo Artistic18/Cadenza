@@ -22,8 +22,14 @@ module.exports = {
         const dispatcher = queue.connection
          .play(stream, {type: streamType, highWaterMark: 1})
          .on("finish", () => {
+             if(queue.loop){
+                 let last = queue.songs.shift();
+                 queue.songs.push(last);
+                 module.exports.play(queue.songs[0], message);
+             }else{
              queue.songs.shift();
              module.exports.play(queue.songs[0], message);
+             }
 
          })
          .on("error", (err) => {

@@ -1,6 +1,7 @@
 module.exports = {
     name: 'pause',
     cooldown: 3,
+    aliases: ["pa"],
     description: "Pause the current song.",
     execute(message){
        const queue = message.client.queue.get(message.guild.id);
