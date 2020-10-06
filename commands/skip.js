@@ -1,5 +1,6 @@
 module.exports = {
     name: 'skip',
+    aliases: ["s"],
     description: 'Skips the current song',
     execute(message){
         const queue = message.client.queue.get(message.guild.id);

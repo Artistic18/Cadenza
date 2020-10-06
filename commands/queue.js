@@ -21,7 +21,7 @@ module.exports = {
             append: ""
         });
 
-        splitdes.forEach(async(m) => {
+        splitdes.forEach(async (m) => {
             Embed.setDescription(m);
             message.channel.send(Embed);
         });
