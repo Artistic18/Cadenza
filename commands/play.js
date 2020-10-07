@@ -34,6 +34,10 @@ module.exports = {
         const url = args[0];
         const urlValid = vidPattern.test(args[0]);
 
+        if(!vidPattern.test(args[0]) && listPattern.test(args[0])){
+            return message.client.commands.get('playlist').execute(message, args);
+        }
+
         const queueConstruct = {
             textChannel: message.channel,
             channel,
