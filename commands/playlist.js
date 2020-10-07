@@ -37,6 +37,7 @@ module.exports = {
             loop: false,
             volume: 100,
             playing: true
+        
         };
 
         let song = null;
