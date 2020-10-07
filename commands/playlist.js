@@ -2,8 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { play } = require("../include/play");
 const { Youtube_API } = require("../config.json");
 const YouTubeAPI = require("simple-youtube-api");
-const { MAX_PLAYLIST_SIZE } = 10;
-const youtube = new YouTubeAPI(Youtube_API);
+const youtube = new YouTubeAPI(process.env.yt);
 
 module.exports = {
     name: 'playlist',
