@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { play } = require("../include/play");
 const { Youtube_API } = require("../config.json");
+const { maxplaylist } = 20;
 const YouTubeAPI = require("simple-youtube-api");
 const youtube = new YouTubeAPI(process.env.yt);
 
@@ -45,7 +46,7 @@ module.exports = {
         if(urlValid){
             try{
                 playlist = await youtube.getPlaylist(url, {part: "snippet"});
-                videos = await playlist.getVideos(31 , {part: "snippet"});
+                videos = await playlist.getVideos(maxplaylist || 20 , {part: "snippet"});
             }catch(error){
                 console.error(error);
                 return message.reply("Invalid Playlist!").catch(console.error);
@@ -54,7 +55,7 @@ module.exports = {
             try{
                 const results = await youtube.searchPlaylists(search, 1, {part: "snippet"});
                 playlist = result[0];
-                videos = await playlist.getVideos(31 , {part: "snippet"});
+                videos = await playlist.getVideos(maxplaylist || 20, {part: "snippet"});
             }catch(error){
                 console.error(error);
                 return message.reply("Invalid Playlist!").catch(console.error);
