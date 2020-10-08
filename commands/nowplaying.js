@@ -16,15 +16,6 @@ module.exports = {
           .setDescription(`**${song.title}**\n${song.url}`)
           .setColor("#f54298")
           .setAuthor("Cadenza")
-          .addField(
-              "\u200b",
-              new Date(curr * 1000).toISOString().substr(11,8) + 
-              "[" +
-               Bar(song.duration == 0 ? curr : song.duration, curr, 10,"▬", "🔵")[0] +
-              "]" +
-              (song.duration == 0 ? "LIVE" : new Date(song.duration * 1000).toISOString().substr(11,8)),
-              false
-          );
         if(song.duration > 0)
          nowplaying.setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11,8));
          return message.channel.send(nowplaying);
