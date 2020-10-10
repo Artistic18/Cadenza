@@ -1,5 +1,6 @@
 module.exports = {
     name: 'loop',
+    aliases: ["lq"],
     description: 'Toogle looping',
     execute(message){
         const queue = message.client.queue.get(message.guild.id);

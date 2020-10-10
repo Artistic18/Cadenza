@@ -21,7 +21,7 @@ module.exports = {
         const permissions = channel.permissionsFor(message.client.user);
         if(!permissions.has("CONNECT"))
           return message.reply("Cannot join this channel");
-        if(!permissions.has("SPEKAK"))
+        if(!permissions.has("SPEAK"))
           return message.reply("I don't permission to speak on this channel");
         
         const search = args.join(" ");
