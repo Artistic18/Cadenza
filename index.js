@@ -7,6 +7,7 @@ const{
 const fs = require('fs');
 
 const client = new Discord.Client();
+client.options.http.api = "https://discord.com/api"
 
 client.queue = new Map();
 client.commands = new Discord.Collection();

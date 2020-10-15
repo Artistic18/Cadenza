@@ -28,7 +28,7 @@ module.exports = {
         if(!permissions.has("SPEAK"))
           return message.reply("Cannot speak in this voice channel, make sure permissions are correct");
         
-        const search = args.join(" ");
+        const search = args.join(' ');
         const vidPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
         const listPattern = /^.*(list=)([^#\&\?]*).*/gi;
         const url = args[0];
