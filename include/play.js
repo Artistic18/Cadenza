@@ -13,6 +13,7 @@ module.exports = {
                 }
                 else return;
             },120000);
+            
             message.client.queue.delete(message.guild.id);
             return queue.textChannel.send(`**Music Queue Ended**`);
         }
