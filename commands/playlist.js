@@ -46,7 +46,7 @@ module.exports = {
         if(urlValid){
             try{
                 playlist = await youtube.getPlaylist(url, {part: "snippet"});
-                videos = await playlist.getVideos(maxplaylist || 20 , {part: "snippet"});
+                videos = await playlist.getVideos(maxplaylist || args[1] , {part: "snippet"});
             }catch(error){
                 console.error(error);
                 return message.reply("Invalid Playlist!").catch(console.error);
@@ -55,7 +55,7 @@ module.exports = {
             try{
                 const results = await youtube.searchPlaylists(search, 1, {part: "snippet"});
                 playlist = result[0];
-                videos = await playlist.getVideos(maxplaylist || 20, {part: "snippet"});
+                videos = await playlist.getVideos(maxplaylist || args[1] , {part: "snippet"});
             }catch(error){
                 console.error(error);
                 return message.reply("Invalid Playlist!").catch(console.error);
@@ -83,7 +83,7 @@ module.exports = {
         
         playlistEmbed.setDescription(queueConstruct.songs.map((song, index) => `${index+1}. ${song.title}`));
         if(playlistEmbed.description.length >= 2048)
-        playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\nPlaylist too large.";
+        playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\nPlaylist too large to display.";
      
         message.channel.send(`${message.author} Started Playlist.`, playlistEmbed);
         if(!queue) message.client.queue.set(message.guild.id, queueConstruct);
