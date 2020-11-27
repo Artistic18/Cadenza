@@ -83,7 +83,7 @@ module.exports = {
         
         playlistEmbed.setDescription(queueConstruct.songs.map((song, index) => `${index+1}. ${song.title}`));
         if(playlistEmbed.description.length >= 2048)
-        playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\nPlaylist too large to display.";
+        playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\n Playlist too large to display.";
      
         message.channel.send(`${message.author} Started Playlist.`, playlistEmbed);
         if(!queue) message.client.queue.set(message.guild.id, queueConstruct);

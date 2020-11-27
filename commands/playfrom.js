@@ -4,7 +4,7 @@ module.exports = {
     description: "Plays a song from the given number in the queue",
     execute(message,args){
         if(!args.length)
-          return message.reply("You need to provide the song number.");
+          return message.reply("You need to provide the song number. ");
         if(isNaN(args[0]))
           return message.reply("You need to provide the song number.");
         const queue = message.client.queue.get(message.guild.id);
