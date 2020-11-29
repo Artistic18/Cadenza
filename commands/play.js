@@ -1,7 +1,7 @@
 const ytdl = require("ytdl-core");
 const { Youtube_API } = require("../config.json");
 const YouTubeAPI = require("simple-youtube-api");
-const youtube = new YouTubeAPI(Youtube_API);
+const youtube = new YouTubeAPI(process.env.yt);
 const { play } = require("../include/play");
 
 module.exports = {
