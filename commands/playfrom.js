@@ -23,6 +23,6 @@ module.exports = {
             queue.songs = queue.songs.slice(args[0]-2);
         }
         queue.connection.dispatcher.end();
-        queue.textChannel.send(`**Playing from** ${args[0]}`).catch(console.error);
+        queue.textChannel.send(`**Playing** from song **${queue.songs[1].title}**`).catch(console.error);
     },
 };

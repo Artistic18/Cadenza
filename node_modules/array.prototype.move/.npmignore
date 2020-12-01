@@ -1,0 +1,10 @@
+demo
+tests
+node_modules
+.eslintrc
+.babelrc
+gulpfile.js
+webpack.config.js
+reports
+*.log
+*.lock
