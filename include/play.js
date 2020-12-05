@@ -1,6 +1,6 @@
-const { Collector } = require("discord.js");
 const ytdlDiscord = require("ytdl-core-discord");
 const play = require("../commands/play");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
     async play(song, message){
         const queue = message.client.queue.get(message.guild.id);
@@ -21,7 +21,7 @@ module.exports = {
         let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
         queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
         const dispatcher = queue.connection
-         .play(stream, {type: streamType, highWaterMark: 1})
+         .play(stream, {type: streamType})
          .on("finish", () => {
              if(queue.loop){
                  let last = queue.songs.shift();
@@ -38,7 +38,19 @@ module.exports = {
              queue.songs.shift();
              module.exports.play(queue.songs[0], message);
          });
-         dispatcher.setVolumeLogarithmic(queue.volume / 100);
-        queue.textChannel.send(`Started Playing **${song.title}**`);
+        dispatcher.setVolumeLogarithmic(queue.volume / 100);
+        let embed = new MessageEmbed()
+          .setTitle(`${song.title}`)
+          .setURL(`${song.url}`)
+          .setThumbnail(song.thumbnail || "https://cdn.iconscout.com/icon/free/png-256/youtube-85-226402.png")
+          .setColor("#f54298")
+          .addField(`Song Duration`, `\`${new Date(song.duration * 1000).toISOString().substr(11,8)}\``)
+          .setAuthor(`Started Playing`)
+        try {
+            let playMsg = await queue.textChannel.send(embed)
+        } catch(error){
+            console.error(error);
+        }
+        //queue.textChannel.send(`Started Playing **${song.title}**`);
     }
 };

@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const Bar = require("string-progressbar");
 module.exports = {
     name: 'nowplaying',
     aliases: ["np"],
@@ -17,7 +16,7 @@ module.exports = {
           .setColor("#f54298")
           .setAuthor("Cadenza")
         if(song.duration > 0)
-         nowplaying.setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11,8));
+         nowplaying.setFooter(`Time Remaining: ${new Date(left * 1000).toISOString().substr(11,8)}`);
          return message.channel.send(nowplaying);
 
     }

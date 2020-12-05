@@ -61,27 +61,31 @@ module.exports = {
                 return message.reply("Invalid Playlist!").catch(console.error);
             }
         }
+        const vidpromise = [];
+        for (const v of videos)
+          v.title !== 'Private video' && v.thumbnails && vidpromise.push(youtube.getVideoByID(v.id));
+        
+        const youtubeVideos = await Promise.all(vidpromise);
 
-        videos.forEach((video) => {
-            song ={
+        const newList = youtubeVideos.map((video) => {
+            return (song = {
                 title: video.title,
                 url: video.url,
-                duration: video.durationSeconds
-            }
-            if(queue){
-                queue.songs.push(song);
-            }else{
-                queueConstruct.songs.push(song);
-            }
-
+                duration: video.durationSeconds,
+                thumbnail: video.thumbnails.medium.url
+            });
         });
+
+        queue ? queue.songs.push(...newList) : queueConstruct.songs.push(...newList);
+        const songs = queue ? queue.songs : queueConstruct.songs;
+
         let playlistEmbed = new MessageEmbed()
           .setTitle(`${playlist.title}`)
+          .setDescription(songs.map((song,index) => `${index + 1}. ${song.title}`))
           .setURL(playlist.url)
           .setColor("#f58d42")
           .setTimestamp();
         
-        playlistEmbed.setDescription(queueConstruct.songs.map((song, index) => `${index+1}. ${song.title}`));
         if(playlistEmbed.description.length >= 2048)
         playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\n Playlist too large to display.";
      
