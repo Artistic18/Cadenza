@@ -21,7 +21,7 @@ module.exports = {
         let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
         queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
         const dispatcher = queue.connection
-         .play(stream, {type: streamType})
+         .play(stream, {type: streamType, highWaterMark: 1})
          .on("finish", () => {
              if(queue.loop){
                  let last = queue.songs.shift();
