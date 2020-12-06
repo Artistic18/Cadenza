@@ -19,6 +19,7 @@
   "dependencies": {
     "array.prototype.move": "0.0.4",
     "discord.js": "^12.3.1",
+    "erit-ytdl": "^0.1.2",
     "opusscript": "0.0.7",
     "simple-youtube-api": "^5.2.1",
     "string-progressbar": "^1.0.1",
