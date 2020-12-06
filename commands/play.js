@@ -57,7 +57,8 @@ module.exports = {
                 song = {
                     title: songInfo.videoDetails.title,
                     url: songInfo.videoDetails.video_url,
-                    duration: songInfo.videoDetails.lengthSeconds
+                    duration: songInfo.videoDetails.lengthSeconds,
+                    thumbnail: songInfo.videoDetails.thumbnail.thumbnails[3].url
                 };
             }catch(error){
                 console.error(error);
@@ -71,7 +72,8 @@ module.exports = {
             song = {
                 title: songInfo.videoDetails.title,
                 url: songInfo.videoDetails.video_url,
-                duration: songInfo.videoDetails.lengthSeconds
+                duration: songInfo.videoDetails.lengthSeconds,
+                thumbnail: songInfo.videoDetails.thumbnail.thumbnails[3].url
                 };
             }catch(error){
                 console.error(error);
