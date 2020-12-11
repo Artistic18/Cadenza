@@ -75,7 +75,7 @@ module.exports = {
                 thumbnail: video.thumbnails.medium.url
             });
         });
-
+      
         queue ? queue.songs.push(...newList) : queueConstruct.songs.push(...newList);
         const songs = queue ? queue.songs : queueConstruct.songs;
 

@@ -18,7 +18,9 @@ for(const file of commandFIles){
     client.commands.set(command.name, command);
 }
 
-client.once('ready', () => {
+client.once('ready', async() => {
+    const servers = await client.guilds.cache.size;
+    console.log(`The bot is currently in ${servers} servers.`);
     console.log('Cadenza is Online');
 });
 client.once('disconect', () => {

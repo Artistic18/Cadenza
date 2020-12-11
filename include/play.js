@@ -50,6 +50,7 @@ module.exports = {
           .setColor("#f54298")
           .addField(`Song Duration`, `\`${new Date(song.duration * 1000).toISOString().substr(11,8)}\``)
           .setAuthor(`Started Playing`)
+          .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: 'png', dynamic: true, size: 1024}))
         try {
             let playMsg = await queue.textChannel.send(embed)
         } catch(error){
