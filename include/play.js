@@ -1,3 +1,5 @@
+require('events').EventEmitter.prototype._maxListeners = 20;
+require('events').defaultMaxListeners = 20;
 const ytdl = require("ytdl-core");
 const play = require("../commands/play");
 const { MessageEmbed, StreamDispatcher } = require("discord.js");
