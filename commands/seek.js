@@ -1,9 +1,10 @@
 const { play } = require("../include/play");
+const { seek } = require("../include/play");
 function timeConvert(str){
     const t = str.split(':');
     let s = 0, m = 1;
     while(t.length > 0){
-        s = +m * parseInt(t.pop(),10);
+        s += m * parseInt(t.pop(),10);
         m = m * 60;
     }
     return s;
@@ -19,8 +20,9 @@ module.exports = {
         if( time > queue.songs[0].duration)
           return message.channel.send(`**Input a valid time**`);
         else{
-            let time = timeConvert(args[0]) * 1000;
-            queue.seek(time);
+            let time = timeConvert(args[0]);
+            play(queue.songs[0],message,time.toString());
+            return message.channel.send(`Seeked to - **${args}**`);
         }
     }
 }

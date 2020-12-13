@@ -1,8 +1,9 @@
 const ytdl = require("ytdl-core");
 const play = require("../commands/play");
 const { MessageEmbed, StreamDispatcher } = require("discord.js");
+let time = 0;
 module.exports = {
-    async play(song, message){
+    async play(song, message, args=0){
         const queue = message.client.queue.get(message.guild.id);
 
         if(!song){
@@ -17,8 +18,9 @@ module.exports = {
             message.client.queue.delete(message.guild.id);
             return queue.textChannel.send(`**Music Queue Ended**`);
         }
+        let time1 = args.toString();
         const streamOptions = {
-            seek: 0,
+            seek: parseInt(time1),
             highWaterMark: 1
         };
         let stream = await ytdl(song.url,{filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25});
@@ -52,10 +54,11 @@ module.exports = {
           .setAuthor(`Started Playing`)
           .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: 'png', dynamic: true, size: 1024}))
         try {
-            let playMsg = await queue.textChannel.send(embed)
+            if(time1 == 0)
+              await queue.textChannel.send(embed)
         } catch(error){
             console.error(error);
         }
-        //queue.textChannel.send(`Started Playing **${song.title}**`);
+
     }
 };
