@@ -1,8 +1,8 @@
 const ytdl = require("ytdl-core");
-const { Youtube_API } = require("../config.json");
+const { Youtube_API } = require("../../config.json");
 const YouTubeAPI = require("simple-youtube-api");
 const youtube = new YouTubeAPI(process.env.yt);
-const { play } = require("../include/play");
+const { play } = require("../../include/play");
 
 module.exports = {
     name: 'play',
@@ -58,7 +58,7 @@ module.exports = {
                     title: songInfo.videoDetails.title,
                     url: songInfo.videoDetails.video_url,
                     duration: songInfo.videoDetails.lengthSeconds,
-                    thumbnail: songInfo.videoDetails.thumbnail.thumbnails[3].url
+                    thumbnail: songInfo.videoDetails.thumbnails[3].url
                 };
             }catch(error){
                 console.error(error);
@@ -73,7 +73,7 @@ module.exports = {
                 title: songInfo.videoDetails.title,
                 url: songInfo.videoDetails.video_url,
                 duration: songInfo.videoDetails.lengthSeconds,
-                thumbnail: songInfo.videoDetails.thumbnail.thumbnails[3].url
+                thumbnail: songInfo.videoDetails.thumbnails[3].url
                 };
             }catch(error){
                 console.error(error);

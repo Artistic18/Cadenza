@@ -1,5 +1,5 @@
-const { play } = require("../include/play");
-const { seek } = require("../include/play");
+const { play } = require("../../include/play");
+const { seek } = require("../../include/play");
 function timeConvert(str){
     const t = str.split(':');
     let s = 0, m = 1;

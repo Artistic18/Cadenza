@@ -1,4 +1,4 @@
-const { play } = require("../include/play");
+const { play } = require("../../include/play");
 module.exports = {
     name: 'replay',
     aliases: ["re"],

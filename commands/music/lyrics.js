@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { getSong } = require('genius-lyrics-api');
-const { genius_lyrics } = require('../config.json');
+const { genius_lyrics } = require('../../config.json');
 
 module.exports = {
     name: 'lyrics',
@@ -12,7 +12,7 @@ module.exports = {
         const queue = message.client.queue.get(message.guild.id);
         if(!queue) return message.channel.send("There is no song playing.").catch(console.error);
         options = {
-            apiKey: process.env.genius,
+            apiKey: genius_lyrics,
             title: queue.songs[0].title,
             artist: '',
             optimizeQuery: true

@@ -12,11 +12,16 @@ client.options.http.api = "https://discord.com/api"
 client.queue = new Map();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-const commandFIles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for(const file of commandFIles){
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
+
+const commandDirs = fs.readdirSync('./commands')
+for(let dir of commandDirs){
+    let commandFiles = fs.readdirSync(`./commands/${dir}`).filter(file => file.endsWith('.js'));
+    for(let file of commandFiles){
+        const command = require(`./commands/${dir}/${file}`);
+        client.commands.set(command.name, command);
+    }
 }
+
 
 client.once('ready', async() => {
     const servers = await client.guilds.cache.size;
