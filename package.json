@@ -24,7 +24,7 @@
     "opusscript": "0.0.7",
     "simple-youtube-api": "^5.2.1",
     "string-progressbar": "^1.0.1",
-    "ytdl-core": "^4.2.1",
+    "ytdl-core": "^4.4.4",
     "ytdl-core-discord": "^1.2.4"
   }
 }
