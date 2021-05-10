@@ -12,7 +12,7 @@ module.exports = {
         const queue = message.client.queue.get(message.guild.id);
         if(!queue) return message.channel.send("There is no song playing.").catch(console.error);
         options = {
-            apiKey: genius_lyrics,
+            apiKey: process.env.genius,
             title: queue.songs[0].title,
             artist: '',
             optimizeQuery: true

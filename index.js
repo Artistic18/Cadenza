@@ -1,13 +1,14 @@
 const Discord = require('discord.js');
+require('dotenv').config();
 const{
     prefix,
     token,
 } = require('./config.json');
 
 const fs = require('fs');
-
 const client = new Discord.Client();
 client.options.http.api = "https://discord.com/api"
+
 
 client.queue = new Map();
 client.commands = new Discord.Collection();
@@ -31,6 +32,12 @@ client.once('ready', async() => {
 client.once('disconect', () => {
     console.log('Disconnect!');
 });
+
+client.on('guildMemberAdd', member => {
+    const channel = member.guild.channels.cache.find(channel => channel.name === "general");
+    if(!channel) return;
+    channel.send(`Welcome ${member} to the server.`);
+})
 
 client.on('message', async (msg) => {
     if(!msg.content.startsWith(prefix) || msg.author.bot){

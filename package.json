@@ -19,12 +19,13 @@
   "dependencies": {
     "array.prototype.move": "0.0.4",
     "discord.js": "^12.3.1",
+    "dotenv": "^9.0.1",
     "erit-ytdl": "^0.1.2",
     "genius-lyrics-api": "^3.0.3",
     "opusscript": "0.0.7",
     "simple-youtube-api": "^5.2.1",
     "string-progressbar": "^1.0.1",
-    "ytdl-core": "^4.5.0",
+    "ytdl-core": "^4.7.0",
     "ytdl-core-discord": "^1.2.4"
   }
 }
