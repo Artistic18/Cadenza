@@ -96,7 +96,7 @@ module.exports = {
             console.error(error);
             message.client.queue.delete(message.guild.id);
             await channel.leave();
-            return message.channel.send(`Could not join the channel: ${error}`).catch(sonsole.error);
+            return message.channel.send(`Could not join the channel: ${error}`).catch(console.error);
         }
 
 

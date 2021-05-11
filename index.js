@@ -2,18 +2,19 @@ const Discord = require('discord.js');
 require('dotenv').config();
 const{
     prefix,
-    token,
-} = require('./config.json');
+} = require('./config.json'); // prefix is /
 
 const fs = require('fs');
-const client = new Discord.Client();
-client.options.http.api = "https://discord.com/api"
+const client = new Discord.Client(); // creating a new discord client object
+//client.options.http.api = "https://discord.com/api"
 
 
 client.queue = new Map();
 client.commands = new Discord.Collection();
-const cooldowns = new Discord.Collection();
+//const cooldowns = new Discord.Collection();
 
+// Iterate through all the commands
+// Create the command list
 const commandDirs = fs.readdirSync('./commands')
 for(let dir of commandDirs){
     let commandFiles = fs.readdirSync(`./commands/${dir}`).filter(file => file.endsWith('.js'));
@@ -24,7 +25,7 @@ for(let dir of commandDirs){
 }
 
 
-client.once('ready', async() => {
+client.once('ready', async() => {          // Fire on bot ready.
     const servers = await client.guilds.cache.size;
     console.log(`The bot is currently in ${servers} servers.`);
     console.log('Cadenza is Online');
@@ -33,13 +34,13 @@ client.once('disconect', () => {
     console.log('Disconnect!');
 });
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', member => {  // Check if a user has joined the server
     const channel = member.guild.channels.cache.find(channel => channel.name === "general");
     if(!channel) return;
     channel.send(`Welcome ${member} to the server.`);
 })
 
-client.on('message', async (msg) => {
+client.on('message', async (msg) => {   // Check if a user has entered any message and parse it.
     if(!msg.content.startsWith(prefix) || msg.author.bot){
         return;
     }

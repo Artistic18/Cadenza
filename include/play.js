@@ -1,9 +1,9 @@
-require('events').EventEmitter.prototype._maxListeners = 20;
+require('events').EventEmitter.prototype._maxListeners = 20; // Setting max listeners to 20
 require('events').defaultMaxListeners = 20;
 const ytdl = require("ytdl-core");
 const play = require("../commands/music/play");
 const { MessageEmbed, StreamDispatcher } = require("discord.js");
-let time = 0;
+
 module.exports = {
     async play(song, message, args=0){
         const queue = message.client.queue.get(message.guild.id);
@@ -20,14 +20,18 @@ module.exports = {
             message.client.queue.delete(message.guild.id);
             return queue.textChannel.send(`**Music Queue Ended**`);
         }
+
         let time1 = args.toString();
         const streamOptions = {
             seek: parseInt(time1),
             highWaterMark: 1
         };
+
         let stream = await ytdl(song.url,{filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25});
-        let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
+        //let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
+        
         queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
+        
         const dispatcher = queue.connection
          .play(stream, streamOptions, { type: 'opus'})
          .on("finish", () => {
@@ -46,7 +50,9 @@ module.exports = {
              queue.songs.shift();
              module.exports.play(queue.songs[0], message);
          });
+        
         dispatcher.setVolumeLogarithmic(queue.volume / 100);
+        
         let embed = new MessageEmbed()
           .setTitle(`${song.title}`)
           .setURL(`${song.url}`)
