@@ -13,7 +13,7 @@ module.exports = {
         if (!queue.connection.dispatcher && message.guild.me.voice.channel) {
           queue.channel.leave();
           queue.textChannel
-            .send(`\`Cadenza** left successfully\``)
+            .send(`\`Cadenza left successfully\``)
             .catch(console.error);
         } else return;
       }, 120000);
