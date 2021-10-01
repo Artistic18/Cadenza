@@ -1,5 +1,4 @@
 const ytdl = require('ytdl-core');
-const { Youtube_API } = require('../../config.json');
 const YouTubeAPI = require('simple-youtube-api');
 const youtube = new YouTubeAPI(process.env.yt);
 const { play } = require('../../include/play');
@@ -14,23 +13,23 @@ module.exports = {
     const { channel } = message.member.voice;
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!channel) {
-      return message.reply('You need to join a voice channel first!');
+      return message.reply(`\`You need to join a voice channel first!\``);
     }
     if (serverQueue && channel !== message.guild.me.voice.channel) {
       return message.reply(
-        `You must be in the same channel as ${message.client.user}`
+        `\`You must be in the same channel as ${message.client.user}\``
       );
     }
     if (!args.length) {
-      return message.reply('You need to provide a Youtube Link.');
+      return message.reply(`\`You need to provide a Youtube Link.\``);
     }
 
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has('CONNECT'))
-      return message.reply('Cannot connect to voice, missing permissons');
+      return message.reply(`\`Cannot connect to voice, missing permissons\``);
     if (!permissions.has('SPEAK'))
       return message.reply(
-        'Cannot speak in this voice channel, make sure permissions are correct'
+        `\`Cannot speak in this voice channel, make sure permissions are correct\``
       );
 
     const search = args.join(' ');
@@ -82,7 +81,7 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        return message.reply('No videos found.').catch(console.error);
+        return message.reply(`\`No videos found.\``).catch(console.error);
       }
     }
 
@@ -105,7 +104,7 @@ module.exports = {
       message.client.queue.delete(message.guild.id);
       await channel.leave();
       return message.channel
-        .send(`Could not join the channel: ${error}`)
+        .send(`\`Could not join the channel: ${error}\``)
         .catch(console.error);
     }
   },
