@@ -2,6 +2,9 @@
   "name": "cadenza",
   "version": "1.0.0",
   "description": "A fully functional Discord Music Bot.",
+  "engines": {
+    "node": "14.16.1"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
