@@ -153,7 +153,7 @@ git push
 
 **10.** Click on `Create Pull Request`.
 
-**11.** Voila :exclamation: You have made a PR to the Registration-Portal- :boom: . Wait for your submission to be accepted and your PR to be merged.
+**11.** Voila :exclamation: You have made a PR to the Cadenza- :boom: . Wait for your submission to be accepted and your PR to be merged.
 
 
 
