@@ -1,6 +1,6 @@
 # Cadenza
 
-![Cadenza Logo](Cadenza.png)
+![Cadenza Logo](Cadenza.PNG)
 > Cadenza is a Discord Bot with music playability and server manageability.
 ## Features
 
