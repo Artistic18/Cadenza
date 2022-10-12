@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: 'botping',
   aliases: ['bp'],
-  description: "Shows the bot's average ping",
+  description: "Shows the Bot's Ping",
   execute(message) {
     let embed = new MessageEmbed()
       .addField('Ping', `${Math.round(message.client.ws.ping)}ms`, true)
