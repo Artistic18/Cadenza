@@ -5,7 +5,7 @@ const { genius_lyrics } = require('../../config.json');
 module.exports = {
   name: 'lyrics',
   aliases: ['ly'],
-  description: 'Generates the lyrics for the given song',
+  description: 'Generates the lyrics for the given song and send as text',
   async execute(message, args) {
     let options;
     if (args.length == 0) {
