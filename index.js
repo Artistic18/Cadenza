@@ -25,6 +25,7 @@ for (let dir of commandDirs) {
   }
 }
 
+//const commandFiles = fs
 client.once('ready', async () => {
   // Fire on bot ready.
   const servers = await client.guilds.cache.size;
@@ -44,6 +45,7 @@ client.on('guildMemberAdd', (member) => {
   channel.send(`Welcome ${member} to the server.`);
 });
 
+//listen for message
 client.on('message', async (msg) => {
   // Check if a user has entered any message and parse it.
   if (!msg.content.startsWith(prefix) || msg.author.bot) {
@@ -67,4 +69,5 @@ client.on('message', async (msg) => {
   }
 });
 
+// connect to client
 client.login(process.env.token);
