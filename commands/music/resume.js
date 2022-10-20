@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: 'resume',
   aliases: ['r'],
-  description: 'resume playing a song.',
+  description: 'Resume playing a song.',
   execute(message) {
     const queue = message.client.queue.get(message.guild.id);
     const embed = new MessageEmbed()
